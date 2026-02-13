@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Controle Financeiro - Calhas Santo Expedito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" sizes="192x192" href="./LOGO CALHAS SANTO EXPEDITO.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+</head>
+
+
+
+
+<body>
+
+    <header class="header-centralizado">
+        <button class="btn-modo" id="btnModo" onclick="alternarModo()">🌙</button>
+
+        <div class="header-centro">
+            <img src="./LOGO CALHAS SANTO EXPEDITO.jpg" class="logo" alt="Logo">
+            <h1>Controle Financeiro - Calhas Santo Expedito</h1>
+        </div>
+    </header>
+
+
+
+
+    
+
+    <!-- 🔹 FILTROS AVANÇADOS -->
+    <section class="filtros">
+        <div class="filtro-grupo">
+            <label>📅 Data inicial:</label>
+            <input type="date" id="dataInicio">
+        </div>
+
+        <div class="filtro-grupo">
+            <label>📅 Data final:</label>
+            <input type="date" id="dataFim">
+        </div>
+
+        <button onclick="filtrarPorPeriodo()">Filtrar</button>
+
+        <button onclick="exportarPDF()">📄 PDF</button>
+        <button onclick="exportarExcel()">📊 Excel</button>
+    </section>
+
+    <!-- 🔹 FORMULÁRIO -->
+    <section class="formulario">
+        <input type="date" id="data">
+        <input type="text" id="descricao" placeholder="Descrição">
+
+        <select id="categoria">
+            <option value="Calhas">Calhas</option>
+            <option value="Rufos">Rufos</option>
+            <option value="Condutores">Condutores</option>
+            <option value="Manutenção">Manutenção</option>
+            <option value="PORTÃO BASCULANTE">PORTÃO BASCULANTE</option>
+        </select>
+
+        <select id="tipo">
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+        </select>
+
+        <input type="number" id="valor" placeholder="Valor">
+
+        <button onclick="adicionarLancamento()">Adicionar</button>
+    </section>
+
+    <!-- 🔹 RESUMO -->
+    <section class="resumo">
+        <div>Total Entradas: <span id="totalEntradas">R$ 0,00</span></div>
+        <div>Total Saídas: <span id="totalSaidas">R$ 0,00</span></div>
+        <div>Saldo: <span id="saldoTotal">R$ 0,00</span></div>
+    </section>
+
+    <!-- 🔹 GRÁFICO -->
+
+    <div class="opcoes-grafico">
+        <label>📊 Dashboard:</label>
+        <select id="tipoDashboard" onchange="atualizarTela()">
+            <option value="movimentacao">Entradas x Saídas</option>
+            <option value="categoria">Entradas por Categoria</option>
+            <option value="saldo">Saldo Acumulado</option>
+            <option value="mensal">Entradas x Saídas por Mês</option>
+            <option value="ranking">Ranking de Gastos</option>
+        </select>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="opcoes-grafico">
+        <label>Tipo de Gráfico:</label>
+        <select id="tipoGrafico" onchange="atualizarTela()">
+            <option value="bar">Barras</option>
+            <option value="pie">Pizza</option>
+            <option value="line">Linha</option>
+        </select>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <section class="grafico">
+        <div class="grafico-box">
+            <canvas id="graficoCaixa"></canvas>
+        </div>
+    </section>
+
+    <!-- 🔹 TABELA -->
+    <section class="tabela">
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="listaLancamentos"></tbody>
+        </table>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
